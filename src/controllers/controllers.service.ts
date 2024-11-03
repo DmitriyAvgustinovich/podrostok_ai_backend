@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { OpenaiService } from 'src/openai/openai.service';
+import { OpenaiService } from '../openai/openai.service';
 
 @Injectable()
 export class ControllersService {

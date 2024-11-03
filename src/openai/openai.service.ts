@@ -25,7 +25,7 @@ export class OpenaiService {
             content: `Сделай вывод на основе данных результатов психологического опроса, опираясь на данные тебе инструкции: ${queryStr}`,
           },
         ],
-        max_tokens: 350,
+        max_tokens: 450,
       });
 
       return completion.choices[0]?.message?.content || 'Нет ответа от ChatGPT';

@@ -37,7 +37,7 @@ export const taskThemeFromCourseHandler = async ({
         body: JSON.stringify({
           model: 'gpt-4',
           messages: ctx.session.userProblemDialogue,
-          max_tokens: 500,
+          max_tokens: 550,
           temperature: 0.7,
         }),
       },

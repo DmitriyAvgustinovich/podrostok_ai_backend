@@ -1,4 +1,4 @@
-import { BOT_CALLBACK_DATA, BOT_MESSAGES } from 'src/constants/bot-constants';
+import { BOT_CALLBACK_DATA, BOT_MESSAGES } from '../../../../constants/bot-constants';
 import { getBotButtonByCallbackData } from '../get-bot-button-by-callback-data';
 
 export const getProfessionalPsychoHelpHandler = async ({ ctx }) => {

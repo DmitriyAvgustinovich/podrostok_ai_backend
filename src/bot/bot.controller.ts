@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common";
 import {
   Action,
   Ctx,
@@ -6,15 +6,15 @@ import {
   On,
   Start,
   Update as TelegrafUpdate,
-} from 'nestjs-telegraf';
-import { BotService } from './bot.service';
-import { Message } from 'telegraf/typings/core/types/typegram';
+} from "nestjs-telegraf";
+import { BotService } from "./bot.service";
+import { Message } from "telegraf/typings/core/types/typegram";
 import {
   getBotButtonByCallbackData,
   taskThemeFromCourseHandler,
-} from '../utils';
-import { IServiceContext } from '../types';
-import { BOT_CALLBACK_DATA, BOT_MESSAGES } from '../constants/bot-constants';
+} from "../utils";
+import { IServiceContext } from "../types";
+import { BOT_CALLBACK_DATA, BOT_MESSAGES } from "../constants/bot-constants";
 
 @TelegrafUpdate()
 @Injectable()
@@ -27,10 +27,10 @@ export class BotController {
   }
 
   // ========================================= BACKEND ACTIONS =========================================
-  @On('text')
+  @On("text")
   async onTaskThemeFromCourseText(
     @Ctx() ctx: IServiceContext,
-    @Next() next: () => Promise<void>,
+    @Next() next: () => Promise<void>
   ) {
     const message = ctx.message as Message.TextMessage;
 
@@ -58,19 +58,8 @@ export class BotController {
 
   // ========================================= OPENAI ACTIONS =========================================
   @Action(BOT_CALLBACK_DATA.botTellAboutProblems)
-  async onTaskFromCourse(@Ctx() ctx: IServiceContext) {
-    const sentMessage = await ctx.reply(BOT_MESSAGES.tellAboutProblemsMessage, {
-      parse_mode: 'Markdown',
-      reply_markup: {
-        inline_keyboard: [
-          [getBotButtonByCallbackData(BOT_CALLBACK_DATA.botBackToMenu)],
-        ],
-      },
-    });
-
-    ctx.session.isWaitingForUserProblemAbout = true;
-    ctx.session.lastBotMessageId = sentMessage.message_id;
-    ctx.session.messageMustBeDeleted = false;
+  async onTellAboutProblemsMessage(@Ctx() ctx: IServiceContext) {
+    await this.botService.handleTellAboutProblemsMessage(ctx);
   }
 
   // ========================================= OPENAI ACTIONS =========================================

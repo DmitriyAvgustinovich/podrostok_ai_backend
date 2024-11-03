@@ -1,7 +1,11 @@
-import { Injectable } from '@nestjs/common';
-import { backToMenuHandler, startBotHandler } from '../utils';
-import { IServiceContext } from '../types';
-import { getProfessionalPsychoHelpHandler } from 'src/utils/bot/general/handlers/get-professional-psycho-help-handler';
+import { Injectable } from "@nestjs/common";
+import {
+  backToMenuHandler,
+  startBotHandler,
+  tellAboutProblemsMessageHandler,
+} from "../utils";
+import { IServiceContext } from "../types";
+import { getProfessionalPsychoHelpHandler } from "../utils/bot/general/handlers/get-professional-psycho-help-handler";
 
 @Injectable()
 export class BotService {
@@ -16,6 +20,10 @@ export class BotService {
 
   async handleGetProfessionalPsychoHelp(ctx: IServiceContext) {
     getProfessionalPsychoHelpHandler({ ctx });
+  }
+
+  async handleTellAboutProblemsMessage(ctx: IServiceContext) {
+    tellAboutProblemsMessageHandler({ ctx });
   }
   // ========================================= OPENAI HANDLERS =========================================
   // ========================================= OPENAI HANDLERS =========================================
